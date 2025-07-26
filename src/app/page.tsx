@@ -1,7 +1,16 @@
-import Image from 'next/image';
+import { currentUser } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
+import React from 'react';
 
-export default function Home() {
-  return (
-    <h1 className='font-bold text-5xl text-center'>Calendra app</h1>
-  );
-}
+import { LandingPage } from '@/components';
+// interface Props {}
+
+const Home: React.FC = async () => {
+    const user = await currentUser();
+
+    if (!user) return <LandingPage />;
+
+    return redirect('/events');
+};
+
+export default Home;
