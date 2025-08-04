@@ -5,7 +5,7 @@ import React from 'react';
 import { LandingPage } from '@/components';
 // interface Props {}
 
-const Home: React.FC = async () => {
+const App: React.FC = async () => {
     const user = await currentUser();
 
     if (!user) return <LandingPage />;
@@ -13,4 +13,4 @@ const Home: React.FC = async () => {
     return redirect('/events');
 };
 
-export default Home;
+export default App;
