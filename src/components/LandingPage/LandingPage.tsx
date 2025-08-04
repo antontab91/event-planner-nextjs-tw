@@ -4,8 +4,6 @@ import { neobrutalism } from '@clerk/themes';
 import Image from 'next/image';
 import React from 'react';
 
-// interface Props {}
-
 const LandingPage: React.FC = () => {
     return (
         <main className="flex items-center justify-center p-10 gap-24 max-md:flex-col min-h-screen max-md:gap-8 max-sm:gap-4">

@@ -3,7 +3,6 @@ import { redirect } from 'next/navigation';
 import React from 'react';
 
 import { LandingPage } from '@/components';
-// interface Props {}
 
 const App: React.FC = async () => {
     const user = await currentUser();
