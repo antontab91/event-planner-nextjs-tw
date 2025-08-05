@@ -1,18 +1,20 @@
 import { currentUser } from '@clerk/nextjs/server';
 import React from 'react';
 
-import { PrivateNavBar, PubicNavBar } from '@/components';
+import { PrivateNavBar, PublicNavBar } from '@/components';
 interface Props {
     children: React.ReactNode;
 }
 
 const MainLayout: React.FC<Props> = async ({ children }) => {
     const user = await currentUser();
-
+    console.log(111);
     return (
         <main className="relative">
-            {user ? <PrivateNavBar /> : <PubicNavBar />}
-
+            111111
+            <PublicNavBar />
+            {user ? <PrivateNavBar /> : <PublicNavBar />}
+            1111111
             <section className="pt-36">{children}</section>
         </main>
     );
