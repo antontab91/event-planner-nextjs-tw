@@ -11,10 +11,8 @@ const MainLayout: React.FC<Props> = async ({ children }) => {
     console.log(111);
     return (
         <main className="relative">
-            111111
-            <PublicNavBar />
             {user ? <PrivateNavBar /> : <PublicNavBar />}
-            1111111
+
             <section className="pt-36">{children}</section>
         </main>
     );
