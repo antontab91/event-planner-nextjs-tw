@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: 'Carendra',
+    title: 'Event-pPlanner-NextJS',
     description:
-        'Calendra is a simple and efficient calendar app that helps you manage your events, meetings, and schedules with ease. Stay organized and never miss an important date again',
+        'A powerful and intuitive calendar app designed to effortlessly organize your events, meetings, and schedules. Boost your productivity, stay in control, and ensure you never miss a meaningful moment.',
 };
 
 export default function RootLayout({
