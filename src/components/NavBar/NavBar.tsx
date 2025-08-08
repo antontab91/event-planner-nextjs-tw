@@ -1,5 +1,7 @@
 'use client';
 import { SignInButton, SignUpButton } from '@clerk/nextjs';
+import { SignedIn } from '@clerk/nextjs';
+import { UserButton } from '@clerk/nextjs';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
@@ -21,8 +23,8 @@ const NavBar: React.FC<Props> = ({ isPrivate }) => {
             <IconLink
                 src="/assets/logo.svg"
                 alt="Logo"
-                width={60}
-                height={60}
+                width={80}
+                height={80}
                 href={isPrivate ? '/events' : '/login'}
                 className={
                     'flex items-center gap-1 hover:scale-120 duration-500'
@@ -38,30 +40,41 @@ const NavBar: React.FC<Props> = ({ isPrivate }) => {
                 )}
             >
                 {isPrivate ? (
-                    PRIVATE_NAV_LINKS.map((item) => {
-                        const isActive =
-                            pathName === item.route ||
-                            pathName.startsWith(`${item.route}/`);
-                        return (
-                            <IconLink
-                                key={item.label}
-                                href={item.route}
-                                src={item.imageURL}
-                                alt={item.label}
-                                width={28}
-                                height={28}
-                                className={cn(
-                                    'flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/60 shadow-lg border border-blue-100 hover:bg-blue-50 hover:shadow-xl transition-all duration-200',
-                                    isActive &&
-                                        'bg-blue-100 border-blue-400 shadow-xl'
-                                )}
-                            >
-                                <p className="text-base font-semibold max-lg:hidden">
-                                    {item.label}
-                                </p>
-                            </IconLink>
-                        );
-                    })
+                    <>
+                        {PRIVATE_NAV_LINKS.map((item) => {
+                            const isActive =
+                                pathName === item.route ||
+                                pathName.startsWith(`${item.route}/`);
+                            return (
+                                <IconLink
+                                    key={item.label}
+                                    href={item.route}
+                                    src={item.imageURL}
+                                    alt={item.label}
+                                    width={28}
+                                    height={28}
+                                    className={cn(
+                                        'flex items-center gap-2 px-3 py-1 rounded-4xl bg-white/60 shadow-lg  hover:bg-blue-200 hover:shadow-md transition-all duration-200',
+                                        isActive && 'bg-blue-100  shadow-md'
+                                    )}
+                                >
+                                    <p className="text-md font-semibold max-lg:hidden">
+                                        {item.label}
+                                    </p>
+                                </IconLink>
+                            );
+                        })}
+                        <SignedIn>
+                            <UserButton
+                                appearance={{
+                                    elements: {
+                                        userButtonAvatarBox:
+                                            'min-w-[50px] min-h-[50px]',
+                                    },
+                                }}
+                            />
+                        </SignedIn>
+                    </>
                 ) : (
                     <>
                         <SignInButton>
