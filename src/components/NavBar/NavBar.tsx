@@ -27,7 +27,7 @@ const NavBar: React.FC<Props> = ({ isPrivate }) => {
                 height={80}
                 href={isPrivate ? '/events' : '/login'}
                 className={
-                    'flex items-center gap-1 hover:scale-120 duration-500'
+                    'flex items-center gap-1 hover:scale-110 duration-500'
                 }
             />
 
@@ -49,7 +49,7 @@ const NavBar: React.FC<Props> = ({ isPrivate }) => {
                                 <IconLink
                                     key={item.label}
                                     href={item.route}
-                                    src={item.imageURL}
+                                    iconName={item.iconName}
                                     alt={item.label}
                                     width={28}
                                     height={28}
