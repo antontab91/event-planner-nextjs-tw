@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: 'Event-pPlanner-NextJS',
+    title: 'Event-Planner-NextJS',
     description:
         'A powerful and intuitive calendar app designed to effortlessly organize your events, meetings, and schedules. Boost your productivity, stay in control, and ensure you never miss a meaningful moment.',
 };
