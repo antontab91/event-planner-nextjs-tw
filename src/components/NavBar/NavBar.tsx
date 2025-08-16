@@ -19,7 +19,7 @@ const NavBar: React.FC<Props> = ({ isPrivate }) => {
     const pathName = usePathname();
 
     return (
-        <nav className="flex justify-between items-center fixed z-50 w-full h-28 bg-gray-300 px-10 gap-4 shadow-2xl">
+        <nav className="flex justify-between items-center fixed z-50 w-full h-28 bg-gray-300 px-5 gap-4 shadow-2xl">
             <IconLink
                 src="/assets/logo.svg"
                 alt="Logo"
@@ -54,7 +54,8 @@ const NavBar: React.FC<Props> = ({ isPrivate }) => {
                                     width={28}
                                     height={28}
                                     className={cn(
-                                        'flex items-center gap-2 px-3 py-1 rounded-4xl bg-white/60 shadow-lg  hover:bg-blue-200 hover:shadow-md transition-all duration-200',
+                                        'flex items-center gap-4 px-4 py-4 rounded-4xl bg-white/60 shadow-lg  hover:bg-blue-200 hover:shadow-md transition-all duration-200',
+
                                         isActive && 'bg-blue-100  shadow-md'
                                     )}
                                 >
@@ -69,7 +70,10 @@ const NavBar: React.FC<Props> = ({ isPrivate }) => {
                                 appearance={{
                                     elements: {
                                         userButtonAvatarBox:
-                                            'min-w-[50px] min-h-[50px]',
+                                            'min-w-[44px] min-h-[44px]',
+
+                                        userButtonBox:
+                                            'relative flex items-center px-2 py-2 rounded-4xl bg-white/60 shadow-lg hover:bg-blue-200 hover:shadow-md transition-all duration-200 before:!hidden after:!hidden',
                                     },
                                 }}
                             />
