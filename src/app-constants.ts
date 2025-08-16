@@ -1,3 +1,4 @@
+import { SignInButton, SignUpButton } from '@clerk/nextjs';
 import * as Icons from 'lucide-react';
 
 export const DAYS_OF_WEEK_IN_ORDER = [
@@ -28,6 +29,16 @@ export const PRIVATE_NAV_LINKS = [
     },
 ] as const;
 
+export const AUTH_BUTTONS = [
+    { label: 'Login', icon: 'log-in', Wrap: SignInButton, alt: 'login' },
+    {
+        label: 'Register',
+        icon: 'user-plus',
+        Wrap: SignUpButton,
+        alt: 'register',
+    },
+] as const;
+
 export const ICONS_MAP: Record<
     string,
     React.FC<React.SVGProps<SVGSVGElement>>
@@ -37,4 +48,4 @@ export const ICONS_MAP: Record<
     'user-star': Icons.UserStar,
     'log-in': Icons.LogIn,
     'user-plus': Icons.UserPlus,
-};
+} as const;

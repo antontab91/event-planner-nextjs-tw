@@ -1,15 +1,10 @@
 'use client';
 
-import {
-    SignedIn,
-    SignInButton,
-    SignUpButton,
-    UserButton,
-} from '@clerk/nextjs';
+import { SignedIn, UserButton } from '@clerk/nextjs';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-import { PRIVATE_NAV_LINKS } from '@/app-constants';
+import { AUTH_BUTTONS, PRIVATE_NAV_LINKS } from '@/app-constants';
 import { IconButton, IconLink } from '@/components';
 import { cn } from '@/lib/shadcnUtils';
 
@@ -82,24 +77,17 @@ const NavBar: React.FC<Props> = ({ isPrivate }) => {
                     </>
                 ) : (
                     <>
-                        <SignInButton>
-                            <IconButton
-                                alt="login"
-                                iconName="log-in"
-                                className="cursor-pointer flex items-center gap-2 px-4 py-2 max-md:px-2 rounded-4xl bg-white/60 shadow-lg  hover:bg-blue-200 hover:shadow-md transition-all duration-200"
-                            >
-                                Login
-                            </IconButton>
-                        </SignInButton>
-                        <SignUpButton>
-                            <IconButton
-                                alt="register"
-                                iconName="user-plus"
-                                className="cursor-pointer flex items-center gap-2 px-4 py-2 max-md:px-2 rounded-4xl bg-white/60 shadow-lg  hover:bg-blue-200 hover:shadow-md transition-all duration-200"
-                            >
-                                Register
-                            </IconButton>
-                        </SignUpButton>
+                        {AUTH_BUTTONS.map(({ label, icon, Wrap, alt }) => (
+                            <Wrap key={label}>
+                                <IconButton
+                                    iconName={icon}
+                                    alt={alt}
+                                    className="cursor-pointer flex items-center gap-2 px-4 py-2 max-md:px-2 rounded-4xl bg-white/60 shadow-lg  hover:bg-blue-200 hover:shadow-md transition-all duration-200"
+                                >
+                                    {label}
+                                </IconButton>
+                            </Wrap>
+                        ))}
                     </>
                 )}
             </div>
