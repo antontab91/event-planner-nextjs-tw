@@ -24,7 +24,7 @@ const NavBar: React.FC<Props> = ({ isPrivate }) => {
                 height={80}
                 href={isPrivate ? '/events' : '/login'}
                 className={
-                    'flex items-center gap-1 hover:scale-110 duration-500'
+                    'flex items-center gap-1 hover:scale-110 duration-500 shrink-0'
                 }
             />
 
@@ -78,15 +78,14 @@ const NavBar: React.FC<Props> = ({ isPrivate }) => {
                 ) : (
                     <>
                         {AUTH_BUTTONS.map(({ label, icon, Wrap, alt }) => (
-                            <Wrap key={label}>
-                                <IconButton
-                                    iconName={icon}
-                                    alt={alt}
-                                    className="cursor-pointer flex items-center gap-2 px-4 py-2 max-md:px-2 rounded-4xl bg-white/60 shadow-lg  hover:bg-blue-200 hover:shadow-md transition-all duration-200"
-                                >
-                                    {label}
-                                </IconButton>
-                            </Wrap>
+                            <IconButton
+                                key={label}
+                                iconName={icon}
+                                alt={alt}
+                                className="cursor-pointer flex items-center gap-2 px-4 py-2 max-md:px-2 rounded-4xl bg-white/60 shadow-lg  hover:bg-blue-200 hover:shadow-md transition-all duration-200"
+                            >
+                                {label}
+                            </IconButton>
                         ))}
                     </>
                 )}

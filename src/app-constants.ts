@@ -30,7 +30,12 @@ export const PRIVATE_NAV_LINKS = [
 ] as const;
 
 export const AUTH_BUTTONS = [
-    { label: 'Login', icon: 'log-in', Wrap: SignInButton, alt: 'login' },
+    {
+        label: 'Login',
+        icon: 'log-in',
+        Wrap: SignInButton,
+        alt: 'login',
+    },
     {
         label: 'Register',
         icon: 'user-plus',
@@ -45,6 +50,7 @@ export const ICONS_MAP: Record<
 > = {
     'calendar-days': Icons.CalendarDays,
     'calendar-clock': Icons.CalendarClock,
+    'calendar-plus': Icons.CalendarPlus,
     'user-star': Icons.UserStar,
     'log-in': Icons.LogIn,
     'user-plus': Icons.UserPlus,
