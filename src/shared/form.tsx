@@ -13,8 +13,8 @@ import {
     useFormState,
 } from 'react-hook-form';
 
-import { Label } from '@/components/shadcnUi/label';
-import { cn } from '@/lib/shadcnUtils';
+import { Label } from '@/shared/label';
+import { cn } from '@/shared/utils';
 
 const Form = FormProvider;
 
