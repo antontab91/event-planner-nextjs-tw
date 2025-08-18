@@ -32,7 +32,7 @@ const LandingPage: React.FC = () => {
             </section>
             <div className="mt-3">
                 <SignIn
-                    //  чтобы навигация форм Clerk происходила через hash, а не через стандартный роутинг next
+                    //  навигация форм Clerk через hash, не через стандартный роутинг next
                     routing="hash"
                     appearance={{ baseTheme: neobrutalism }}
                 />

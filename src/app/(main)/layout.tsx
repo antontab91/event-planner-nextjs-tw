@@ -1,7 +1,7 @@
 import { currentUser } from '@clerk/nextjs/server';
 import React from 'react';
 
-import { NavBar } from '@/components';
+import { NavBar } from '@/widgets';
 interface Props {
     children: React.ReactNode;
 }

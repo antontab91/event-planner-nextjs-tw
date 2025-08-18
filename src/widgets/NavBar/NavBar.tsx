@@ -6,7 +6,7 @@ import React from 'react';
 
 import { AUTH_BUTTONS, PRIVATE_NAV_LINKS } from '@/app-constants';
 import { IconButton, IconLink } from '@/components';
-import { cn } from '@/shared/utils';
+import { cn } from '@/components/shared/utils';
 
 interface Props {
     isPrivate?: boolean;

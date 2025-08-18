@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import { ICONS_MAP } from '@/app-constants';
-import { Button } from '@/shared/button';
+import { Button } from '../shared/button';
 
 interface Props extends React.ComponentProps<typeof Button> {
     src?: string;

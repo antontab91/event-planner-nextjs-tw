@@ -2,7 +2,7 @@ import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import React from 'react';
 
-import { LandingPage } from '@/components';
+import { LandingPage } from '@/widgets';
 
 const App: React.FC = async () => {
     const user = await currentUser();
