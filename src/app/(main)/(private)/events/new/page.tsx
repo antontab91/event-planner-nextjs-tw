@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/card';
+import { EventForm } from '@/features';
 
 const NewEventPage: React.FC = () => {
     return (
@@ -7,7 +8,9 @@ const NewEventPage: React.FC = () => {
                 <CardTitle>New Event</CardTitle>
             </CardHeader>
 
-            <CardContent>{/* <EventForm /> */}</CardContent>
+            <CardContent>
+                <EventForm />
+            </CardContent>
         </Card>
     );
 };
