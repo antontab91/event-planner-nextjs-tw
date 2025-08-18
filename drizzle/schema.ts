@@ -84,12 +84,12 @@ export const ScheduleAvailabilityRelations = relations(
 
 // Тип строки из таблицы (то, что возвращает SELECT)
 export type Event = typeof EventTable.$inferSelect;
-export type Schedule = typeof ScheduleTable.$inferSelect;
-export type ScheduleAvailability =
-    typeof ScheduleAvailabilityTable.$inferSelect;
+// export type Schedule = typeof ScheduleTable.$inferSelect;
+// export type ScheduleAvailability =
+//     typeof ScheduleAvailabilityTable.$inferSelect;
 
 // Тип для вставки (то, что передаёте в INSERT)
 export type NewEvent = typeof EventTable.$inferInsert;
-export type NewSchedule = typeof ScheduleTable.$inferInsert;
-export type NewScheduleAvailability =
-    typeof ScheduleAvailabilityTable.$inferInsert;
+// export type NewSchedule = typeof ScheduleTable.$inferInsert;
+// export type NewScheduleAvailability =
+//     typeof ScheduleAvailabilityTable.$inferInsert;

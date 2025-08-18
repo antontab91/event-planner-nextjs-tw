@@ -11,7 +11,7 @@ export const eventFormSchema = z.object({
 
     // durationInMinutes преобразуется в число
     // Должен быть целым, больше 0 и ≤ 720 (12 часов)
-    durationInMinutes: z.coerce
+    durationInMinutes: z
         .number()
         .int()
         .positive('Duration must be greater than 0')
@@ -20,3 +20,5 @@ export const eventFormSchema = z.object({
             `Duration must be less than 12 hours (${60 * 12} minutes)`
         ),
 });
+
+// .coerce // тонкое место , проверить
