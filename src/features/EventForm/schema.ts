@@ -9,9 +9,9 @@ export const eventFormSchema = z.object({
 
     isActive: z.boolean(),
 
-    // durationInMinutes преобразуется в число
+    // durationsInMinutes преобразуется в число
     // Должен быть целым, больше 0 и ≤ 720 (12 часов)
-    durationInMinutes: z
+    durationsInMinutes: z
         .number()
         .int()
         .positive('Duration must be greater than 0')

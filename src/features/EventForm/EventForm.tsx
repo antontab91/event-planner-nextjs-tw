@@ -1,19 +1,12 @@
 'use client';
+
 import { useForm } from 'react-hook-form';
 import React, { useTransition } from 'react';
 import Link from 'next/link';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { eventFormSchema } from './schema';
-import {
-    Form,
-    FormField,
-    FormItem,
-    FormControl,
-    FormLabel,
-    FormMessage,
-    FormDescription,
-} from '@/components/shared/form';
+import { Form } from '@/components/shared/form';
 import {
     AlertDialog,
     AlertDialogTrigger,
@@ -30,13 +23,14 @@ import { Input } from '@/components/shared/input';
 import { Switch } from '@/components/shared/switch';
 import { Button } from '@/components/shared/button';
 import type { Event } from '../../../drizzle/schema';
+import { FieldItem } from '@/components';
 
 // z.infer - Zodутилита берёт схему (z.object, z.string и т. д.) и автоматически выводит из неё TypeScript-тип.
 type FormValues = z.infer<typeof eventFormSchema>;
 
 const DEFAULT_VALUES: FormValues = {
     isActive: true,
-    durationInMinutes: 30,
+    durationsInMinutes: 30,
     description: '',
     name: '',
 };
@@ -66,85 +60,43 @@ const EventForm: React.FC<Props> = ({ event }) => {
                         {form.formState.errors.root.message}
                     </div>
                 )}
-
-                {/* Event Name Field */}
-                <FormField
+                <FieldItem
                     control={form.control}
                     name="name"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Event Name</FormLabel>
-                            <FormControl>
-                                <Input {...field} />
-                            </FormControl>
-                            <FormDescription>
-                                The name users will see when booking
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
+                    label="Event Name"
+                    description="The name users will see when booking"
+                    renderAction={(field) => <Input {...field} />}
                 />
-
-                {/* Duration Field */}
-                <FormField
+                <FieldItem
                     control={form.control}
-                    name="durationInMinutes"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Duration</FormLabel>
-                            <FormControl>
-                                <Input type="number" {...field} />
-                            </FormControl>
-                            <FormDescription>In minutes</FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
+                    name="durationsInMinutes"
+                    label="Duration"
+                    description="In minutes"
+                    renderAction={(field) => <Input type="number" {...field} />}
                 />
-
-                {/* Optional Description Field */}
-                <FormField
+                <FieldItem
                     control={form.control}
                     name="description"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Description</FormLabel>
-                            <FormControl>
-                                <Textarea
-                                    className="resize-none h-32"
-                                    {...field}
-                                />
-                            </FormControl>
-                            <FormDescription>
-                                Optional description of the event
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
+                    label="Description"
+                    description="Optional description of the event"
+                    renderAction={(field) => (
+                        <Textarea className="resize-none h-32" {...field} />
                     )}
                 />
-
-                {/* Toggle for Active Status */}
-                <FormField
+                <FieldItem
                     control={form.control}
                     name="isActive"
-                    render={({ field }) => (
-                        <FormItem>
-                            <div className="flex items-center gap-2">
-                                <FormControl>
-                                    <Switch
-                                        checked={field.value}
-                                        onCheckedChange={field.onChange}
-                                    />
-                                </FormControl>
-                                <FormLabel>Active</FormLabel>
-                            </div>
-                            <FormDescription>
-                                Inactive events will not be visible for users to
-                                book
-                            </FormDescription>
-                        </FormItem>
+                    label="Active"
+                    description="Inactive events will not be visible for users to
+                                book"
+                    renderAction={(field) => (
+                        <Switch
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                        />
                     )}
                 />
-
+                11
                 {/* Buttons section: Delete, Cancel, Save */}
                 <div className="flex gap-2 justify-end">
                     {/* Delete Button (only shows if editing existing event) */}
@@ -225,6 +177,6 @@ export default EventForm;
 const mapEventToFormValues = (event: Event): FormValues => ({
     name: event.name,
     isActive: event.isActive,
-    durationInMinutes: event.durationsInMinutes,
+    durationsInMinutes: event.durationsInMinutes,
     description: event.description ?? '',
 });
