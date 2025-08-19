@@ -7,23 +7,12 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { eventFormSchema } from './schema';
 import { Form } from '@/components/shared/form';
-import {
-    AlertDialog,
-    AlertDialogTrigger,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogTitle,
-    AlertDialogHeader,
-    AlertDialogCancel,
-    AlertDialogFooter,
-    AlertDialogAction,
-} from '@/components/shared/alert-dialog';
 import { Textarea } from '@/components/shared/textarea';
 import { Input } from '@/components/shared/input';
 import { Switch } from '@/components/shared/switch';
 import { Button } from '@/components/shared/button';
 import type { Event } from '../../../drizzle/schema';
-import { FieldItem } from '@/components';
+import { FieldItem, PopupConfirm } from '@/components';
 
 // z.infer - Zodутилита берёт схему (z.object, z.string и т. д.) и автоматически выводит из неё TypeScript-тип.
 type FormValues = z.infer<typeof eventFormSchema>;
@@ -46,6 +35,8 @@ const EventForm: React.FC<Props> = ({ event }) => {
         defaultValues: event ? mapEventToFormValues(event) : DEFAULT_VALUES,
     });
 
+    const isDisabled = isDeletePending || form.formState.isSubmitting;
+
     const onSubmit = () => {};
 
     return (
@@ -54,7 +45,6 @@ const EventForm: React.FC<Props> = ({ event }) => {
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="flex gap-6 flex-col"
             >
-                {/* Show root error if any */}
                 {form.formState.errors.root && (
                     <div className="text-destructive text-sm">
                         {form.formState.errors.root.message}
@@ -96,59 +86,25 @@ const EventForm: React.FC<Props> = ({ event }) => {
                         />
                     )}
                 />
-                11
-                {/* Buttons section: Delete, Cancel, Save */}
                 <div className="flex gap-2 justify-end">
-                    {/* Delete Button (only shows if editing existing event) */}
                     {event && (
-                        <AlertDialog>
-                            <AlertDialogTrigger asChild>
-                                <Button
-                                    className="cursor-pointer hover:scale-105 hover:bg-red-700"
-                                    variant="destructive"
-                                    disabled={
-                                        isDeletePending ||
-                                        form.formState.isSubmitting
-                                    }
-                                >
-                                    Delete
-                                </Button>
-                            </AlertDialogTrigger>
-                            <AlertDialogContent>
-                                <AlertDialogHeader>
-                                    <AlertDialogTitle>
-                                        Are you sure?
-                                    </AlertDialogTitle>
-                                    <AlertDialogDescription>
-                                        This action cannot be undone. This will
-                                        permanently delete this event.
-                                    </AlertDialogDescription>
-                                </AlertDialogHeader>
-                                <AlertDialogFooter>
-                                    <AlertDialogCancel>
-                                        Cancel
-                                    </AlertDialogCancel>
-
-                                    <AlertDialogAction
-                                        className="bg-red-500 hover:bg-red-700 cursor-pointer"
-                                        disabled={
-                                            isDeletePending ||
-                                            form.formState.isSubmitting
-                                        }
-                                        onClick={() => {}}
-                                    >
-                                        Delete
-                                    </AlertDialogAction>
-                                </AlertDialogFooter>
-                            </AlertDialogContent>
-                        </AlertDialog>
+                        <PopupConfirm
+                            variant="destructive"
+                            title="Are you sure?"
+                            description="This action cannot be undone. This will permanently delete this event."
+                            cancelBtnDescription="Cancel"
+                            btnDescription="Delete"
+                            isDisabled={isDisabled}
+                            onClick={() => {}}
+                            classes={{
+                                trigger: 'cursor-pointer hover:bg-red-700',
+                                action: 'bg-red-500 hover:bg-red-700 cursor-pointer',
+                            }}
+                        />
                     )}
 
-                    {/* Cancel Button - redirects to events list */}
                     <Button
-                        disabled={
-                            isDeletePending || form.formState.isSubmitting
-                        }
+                        disabled={isDisabled}
                         type="button"
                         asChild
                         variant="outline"
@@ -156,12 +112,9 @@ const EventForm: React.FC<Props> = ({ event }) => {
                         <Link href="/events">Cancel</Link>
                     </Button>
 
-                    {/* Save Button - submits the form */}
                     <Button
                         className="cursor-pointer hover:scale-105 bg-blue-400 hover:bg-blue-600"
-                        disabled={
-                            isDeletePending || form.formState.isSubmitting
-                        }
+                        disabled={isDisabled}
                         type="submit"
                     >
                         Save
