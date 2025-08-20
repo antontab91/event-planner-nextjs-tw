@@ -4,13 +4,14 @@ import { useForm } from 'react-hook-form';
 import React, { useTransition } from 'react';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { eventFormSchema } from './schema';
+import { eventFormSchema } from '../schema';
 import { Form } from '@/components/shared/form';
 import { Textarea } from '@/components/shared/textarea';
 import { Input } from '@/components/shared/input';
 import { Switch } from '@/components/shared/switch';
-import type { Event } from '../../../drizzle/schema';
+import type { Event } from '../../../../drizzle/schema';
 import { FormFieldItem, PopupConfirm, FormActions } from '@/components';
+import { createEvent, deleteEvent, updateEvent } from '../actions';
 
 // z.infer - Zodутилита берёт схему (z.object, z.string и т. д.) и автоматически выводит из неё TypeScript-тип.
 type FormValues = z.infer<typeof eventFormSchema>;

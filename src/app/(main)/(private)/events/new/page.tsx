@@ -4,7 +4,11 @@ import {
     CardTitle,
     CardContent,
 } from '@/components/shared/card';
-import { EventForm } from '@/features';
+import events from '@/features/Events';
+
+const {
+    components: { EventForm },
+} = events;
 
 const NewEventPage: React.FC = () => {
     return (
