@@ -1,5 +1,5 @@
 'use client';
-
+import { X } from 'lucide-react';
 import React, { MouseEventHandler } from 'react';
 import {
     AlertDialog,
@@ -60,6 +60,10 @@ const PopupConfirm: React.FC<Props> = ({
             </AlertDialogTrigger>
 
             <AlertDialogContent className={classes?.content}>
+                <AlertDialogCancel className="absolute right-2 top-2 rounded-sm opacity-70 hover:opacity-100 cursor-pointer p-0 border-0">
+                    <X className="h-4 w-4" />
+                </AlertDialogCancel>
+
                 <AlertDialogHeader className={classes?.header}>
                     <AlertDialogTitle className={classes?.title}>
                         {title}

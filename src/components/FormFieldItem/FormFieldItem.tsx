@@ -22,16 +22,16 @@ type Props<T extends FieldValues, K extends Path<T>> = {
     label?: string;
     description?: string;
     className?: string;
-    renderAction: (field: ControllerRenderProps<T, K>) => React.ReactNode;
+    renderChild: (field: ControllerRenderProps<T, K>) => React.ReactNode;
 };
 
-const FieldItem = <T extends FieldValues, K extends Path<T>>({
+const FormFieldItem = <T extends FieldValues, K extends Path<T>>({
     control,
     name,
     label,
     description,
     className,
-    renderAction,
+    renderChild,
 }: Props<T, K>) => {
     return (
         <FormField
@@ -40,7 +40,7 @@ const FieldItem = <T extends FieldValues, K extends Path<T>>({
             render={({ field }) => (
                 <FormItem className={className}>
                     {label && <FormLabel>{label}</FormLabel>}
-                    <FormControl>{renderAction(field)}</FormControl>
+                    <FormControl>{renderChild(field)}</FormControl>
                     {description && (
                         <FormDescription>{description}</FormDescription>
                     )}
@@ -51,4 +51,4 @@ const FieldItem = <T extends FieldValues, K extends Path<T>>({
     );
 };
 
-export default FieldItem;
+export default FormFieldItem;
