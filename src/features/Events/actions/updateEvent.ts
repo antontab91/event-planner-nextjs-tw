@@ -12,29 +12,30 @@ export async function updateEvent(
     id: string,
     unsafeData: z.infer<typeof eventFormSchema>
 ): Promise<void> {
+    const { userId } = await auth();
+    if (!userId) throw new Error('AUTH_ERROR');
+
+    const parsed = eventFormSchema.safeParse(unsafeData);
+    if (!parsed.success) {
+        throw new Error('VALIDATION_ERROR', { cause: parsed.error.flatten() });
+    }
+
     try {
-        const { userId } = await auth();
-
-        const { success, data } = eventFormSchema.safeParse(unsafeData);
-
-        if (!success || !userId) {
-            throw new Error('Invalid event data or user not authenticated.');
-        }
-
-        const { rowCount } = await db
+        const rows = await db
             .update(EventTable)
-            .set({ ...data })
+            .set({ ...parsed.data })
             .where(
                 and(eq(EventTable.id, id), eq(EventTable.clerkUserId, userId))
-            );
+            )
+            .returning({ id: EventTable.id });
 
-        if (rowCount === 0) {
-            throw new Error(
-                'Event not found or user not authorized to update this event.'
-            );
+        if (rows.length === 0) {
+            throw new Error('NOT_FOUND_OR_FORBIDDEN', {
+                cause: { id, userId },
+            });
         }
-    } catch (error: any) {
-        throw new Error(`Failed to update event: ${error.message || error}`);
+    } catch (cause) {
+        throw new Error('DB_ERROR', { cause });
     } finally {
         revalidatePath('/events');
     }
