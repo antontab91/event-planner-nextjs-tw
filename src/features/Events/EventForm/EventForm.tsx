@@ -9,12 +9,12 @@ import { Form } from '@/components/shared/form';
 import { Textarea } from '@/components/shared/textarea';
 import { Input } from '@/components/shared/input';
 import { Switch } from '@/components/shared/switch';
-import type { Event } from '../../../../drizzle/schema';
+import { FormValues } from '../types';
+import { Event } from '../../../../drizzle/schema';
 import { FormFieldItem, PopupConfirm, FormActions } from '@/components';
 import { createEvent, deleteEvent, updateEvent } from '../actions';
 
 // z.infer - Zodутилита берёт схему (z.object, z.string и т. д.) и автоматически выводит из неё TypeScript-тип.
-type FormValues = z.infer<typeof eventFormSchema>;
 
 const DEFAULT_VALUES: FormValues = {
     isActive: true,

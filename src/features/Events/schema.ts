@@ -20,5 +20,3 @@ export const eventFormSchema = z.object({
             `Duration must be less than 12 hours (${60 * 12} minutes)`
         ),
 });
-
-// .coerce // тонкое место , проверить

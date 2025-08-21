@@ -5,24 +5,29 @@ import { EventTable } from '@drizzle/schema';
 import { eventFormSchema } from '../schema';
 import { auth } from '@clerk/nextjs/server';
 import { revalidatePath } from 'next/cache';
-import { z } from 'zod';
+import { FormValues } from '../types';
 
-export async function createEvent(
-    unsafeData: z.infer<typeof eventFormSchema>
-): Promise<void> {
-    try {
-        const { userId } = await auth();
+export async function createEvent(unsafeData: FormValues): Promise<void> {
+    const { userId } = await auth();
+    if (!userId) throw new Error('AUTH_ERROR');
 
-        const { success, data } = eventFormSchema.safeParse(unsafeData);
+    const { success, data, error } = eventFormSchema.safeParse(unsafeData);
 
-        if (!success || !userId) {
-            throw new Error('Invalid event data or user not authenticated.');
-        }
+    if (!success) {
+        const issues = error.flatten();
+        const err = new Error('VALIDATION_ERROR');
 
-        await db.insert(EventTable).values({ ...data, clerkUserId: userId });
-    } catch (error: any) {
-        throw new Error(`Failed to create event: ${error.message || error}`);
-    } finally {
-        revalidatePath('/events');
+        err.cause = issues;
+        throw err;
     }
+
+    try {
+        await db.insert(EventTable).values({ ...data, clerkUserId: userId });
+    } catch (e) {
+        const err = new Error('DB_ERROR');
+        err.cause = e;
+        throw err;
+    }
+
+    revalidatePath('/events');
 }
