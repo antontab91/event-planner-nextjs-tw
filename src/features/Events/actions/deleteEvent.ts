@@ -5,8 +5,13 @@ import { EventTable } from '@drizzle/schema';
 import { auth } from '@clerk/nextjs/server';
 import { revalidatePath } from 'next/cache';
 import { and, eq } from 'drizzle-orm';
+import { FormValues } from '../types';
 
-export const deleteEvent = async (id: string): Promise<void> => {
+interface input {
+    id: string;
+}
+
+export const deleteEvent = async ({ id }: input): Promise<void> => {
     const { userId } = await auth();
     if (!userId) throw new Error('AUTH_ERROR');
 

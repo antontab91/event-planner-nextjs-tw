@@ -6,7 +6,6 @@ import { eventFormSchema } from '../schema';
 import { auth } from '@clerk/nextjs/server';
 import { and, eq } from 'drizzle-orm';
 import { revalidatePath } from 'next/cache';
-import { z } from 'zod';
 import { FormValues } from '../types';
 
 interface input {

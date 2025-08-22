@@ -1,4 +1,5 @@
 'use client';
+
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import React, { useTransition, useCallback } from 'react';
@@ -53,8 +54,28 @@ const EventForm: React.FC<Props> = ({ event }) => {
                 });
             }
         },
-        [event, router, form]
+        [event?.id, router, form]
     );
+
+    const onDelete = useCallback(() => {
+        console.log(111, console.log(event));
+        startDeleteTransition(async () => {
+            if (!event?.id) {
+                throw console.error();
+            }
+
+            try {
+                await deleteEvent({ id: event.id });
+                router.push('/events');
+            } catch (error) {
+                form.setError('root', {
+                    message: `There was an error deleting your event: ${
+                        error instanceof Error ? error.message : String(error)
+                    }`,
+                });
+            }
+        });
+    }, [event?.id, router, form]);
 
     return (
         <Form {...form}>
@@ -115,7 +136,7 @@ const EventForm: React.FC<Props> = ({ event }) => {
                                 cancelBtnDescription="Cancel"
                                 btnDescription="Delete"
                                 isDisabled={isDisabled}
-                                onClick={() => {}}
+                                onClick={onDelete}
                                 classes={{
                                     trigger: 'cursor-pointer hover:bg-red-700',
                                     action: 'bg-red-500 hover:bg-red-700 cursor-pointer',
