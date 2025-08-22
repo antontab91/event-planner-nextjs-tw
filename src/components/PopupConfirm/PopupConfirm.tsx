@@ -45,49 +45,46 @@ const PopupConfirm: React.FC<Props> = ({
     cancelBtnDescription,
     variant,
     onClick,
-}) => {
-    console.log(classes?.trigger, classes?.action);
-    return (
-        <AlertDialog>
-            <AlertDialogTrigger asChild>
-                <Button
-                    variant={variant}
-                    className={classes?.trigger}
+}) => (
+    <AlertDialog>
+        <AlertDialogTrigger asChild>
+            <Button
+                variant={variant}
+                className={classes?.trigger}
+                disabled={isDisabled}
+            >
+                {btnDescription}
+            </Button>
+        </AlertDialogTrigger>
+
+        <AlertDialogContent className={classes?.content}>
+            <AlertDialogCancel className="absolute right-2 top-2 rounded-sm opacity-70 hover:opacity-100 cursor-pointer p-0 border-0">
+                <X className="h-4 w-4" />
+            </AlertDialogCancel>
+
+            <AlertDialogHeader className={classes?.header}>
+                <AlertDialogTitle className={classes?.title}>
+                    {title}
+                </AlertDialogTitle>
+                <AlertDialogDescription className={classes?.description}>
+                    {description}
+                </AlertDialogDescription>
+            </AlertDialogHeader>
+
+            <AlertDialogFooter className={classes?.footer}>
+                <AlertDialogCancel className={classes?.cancel}>
+                    {cancelBtnDescription}
+                </AlertDialogCancel>
+                <AlertDialogAction
+                    className={classes?.action}
                     disabled={isDisabled}
+                    onClick={onClick}
                 >
                     {btnDescription}
-                </Button>
-            </AlertDialogTrigger>
+                </AlertDialogAction>
+            </AlertDialogFooter>
+        </AlertDialogContent>
+    </AlertDialog>
+);
 
-            <AlertDialogContent className={classes?.content}>
-                <AlertDialogCancel className="absolute right-2 top-2 rounded-sm opacity-70 hover:opacity-100 cursor-pointer p-0 border-0">
-                    <X className="h-4 w-4" />
-                </AlertDialogCancel>
-
-                <AlertDialogHeader className={classes?.header}>
-                    <AlertDialogTitle className={classes?.title}>
-                        {title}
-                    </AlertDialogTitle>
-                    <AlertDialogDescription className={classes?.description}>
-                        {description}
-                    </AlertDialogDescription>
-                </AlertDialogHeader>
-
-                <AlertDialogFooter className={classes?.footer}>
-                    <AlertDialogCancel className={classes?.cancel}>
-                        {cancelBtnDescription}
-                    </AlertDialogCancel>
-                    <AlertDialogAction
-                        className={classes?.action}
-                        disabled={isDisabled}
-                        onClick={onClick}
-                    >
-                        {btnDescription}
-                    </AlertDialogAction>
-                </AlertDialogFooter>
-            </AlertDialogContent>
-        </AlertDialog>
-    );
-};
-
-export default PopupConfirm;
+export default React.memo(PopupConfirm);

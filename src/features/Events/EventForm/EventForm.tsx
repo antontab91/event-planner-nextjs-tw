@@ -1,8 +1,7 @@
 'use client';
-
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import React, { useTransition } from 'react';
-import { z } from 'zod';
+import React, { useTransition, useCallback } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { eventFormSchema } from '../schema';
 import { Form } from '@/components/shared/form';
@@ -35,8 +34,27 @@ const EventForm: React.FC<Props> = ({ event }) => {
     });
 
     const isDisabled = isDeletePending || form.formState.isSubmitting;
+    const router = useRouter();
 
-    const onSubmit = () => {};
+    const onSubmit = useCallback(
+        async (formValues: FormValues) => {
+            try {
+                if (event) {
+                    await updateEvent({ id: event.id, formValues });
+                } else {
+                    await createEvent({ formValues });
+                }
+                router.push('/events');
+            } catch (error) {
+                form.setError('root', {
+                    message: `There was an error saving your event ${
+                        error instanceof Error ? error.message : String(error)
+                    }`,
+                });
+            }
+        },
+        [event, router, form]
+    );
 
     return (
         <Form {...form}>
@@ -112,7 +130,7 @@ const EventForm: React.FC<Props> = ({ event }) => {
     );
 };
 
-export default EventForm;
+export default React.memo(EventForm);
 
 const mapEventToFormValues = (event: Event): FormValues => ({
     name: event.name,

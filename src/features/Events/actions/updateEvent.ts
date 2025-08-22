@@ -7,15 +7,18 @@ import { auth } from '@clerk/nextjs/server';
 import { and, eq } from 'drizzle-orm';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
+import { FormValues } from '../types';
 
-export async function updateEvent(
-    id: string,
-    unsafeData: z.infer<typeof eventFormSchema>
-): Promise<void> {
+interface input {
+    id: string;
+    formValues: FormValues;
+}
+
+export async function updateEvent({ id, formValues }: input): Promise<void> {
     const { userId } = await auth();
     if (!userId) throw new Error('AUTH_ERROR');
 
-    const parsed = eventFormSchema.safeParse(unsafeData);
+    const parsed = eventFormSchema.safeParse(formValues);
     if (!parsed.success) {
         throw new Error('VALIDATION_ERROR', { cause: parsed.error.flatten() });
     }
