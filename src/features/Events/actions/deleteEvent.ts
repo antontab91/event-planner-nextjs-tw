@@ -5,7 +5,7 @@ import { EventTable } from '@drizzle/schema';
 import { auth } from '@clerk/nextjs/server';
 import { revalidatePath } from 'next/cache';
 import { and, eq } from 'drizzle-orm';
-import { FormValues } from '../types';
+import { redirect } from 'next/navigation';
 
 interface input {
     id: string;
@@ -31,6 +31,8 @@ export const deleteEvent = async ({ id }: input): Promise<void> => {
     } catch (cause) {
         throw new Error('DB_ERROR', { cause });
     } finally {
+        // сброс кэша на сервере по этопу пути + редирект
         revalidatePath('/events');
+        redirect('/events');
     }
 };

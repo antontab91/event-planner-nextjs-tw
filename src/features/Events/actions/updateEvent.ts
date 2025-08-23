@@ -7,6 +7,7 @@ import { auth } from '@clerk/nextjs/server';
 import { and, eq } from 'drizzle-orm';
 import { revalidatePath } from 'next/cache';
 import { FormValues } from '../types';
+import { redirect } from 'next/navigation';
 
 interface input {
     id: string;
@@ -39,6 +40,8 @@ export async function updateEvent({ id, formValues }: input): Promise<void> {
     } catch (cause) {
         throw new Error('DB_ERROR', { cause });
     } finally {
+        // сброс кэша на сервере по этопу пути + редирект
         revalidatePath('/events');
+        redirect('/events');
     }
 }
