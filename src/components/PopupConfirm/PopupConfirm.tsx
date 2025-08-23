@@ -11,8 +11,8 @@ import {
     AlertDialogCancel,
     AlertDialogFooter,
     AlertDialogAction,
-} from '@/components/shared/alert-dialog';
-import { Button } from '@/components/shared/button';
+} from '@/vendor/alert-dialog';
+import { Button } from '@/vendor/button';
 
 type Classes = {
     trigger?: string;

@@ -1,9 +1,4 @@
-import {
-    Card,
-    CardHeader,
-    CardTitle,
-    CardContent,
-} from '@/components/shared/card';
+import { Card, CardHeader, CardTitle, CardContent } from '@/vendor/card';
 import events from '@/features/Events';
 
 const {

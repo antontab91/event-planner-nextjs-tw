@@ -5,10 +5,10 @@ import { useForm } from 'react-hook-form';
 import React, { useTransition, useCallback } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { eventFormSchema } from '../schema';
-import { Form } from '@/components/shared/form';
-import { Textarea } from '@/components/shared/textarea';
-import { Input } from '@/components/shared/input';
-import { Switch } from '@/components/shared/switch';
+import { Form } from '@/vendor/form';
+import { Textarea } from '@/vendor/textarea';
+import { Input } from '@/vendor/input';
+import { Switch } from '@/vendor/switch';
 import { FormValues } from '../types';
 import { Event } from '../../../../drizzle/schema';
 import { FormFieldItem, PopupConfirm, FormActions } from '@/components';
@@ -58,7 +58,6 @@ const EventForm: React.FC<Props> = ({ event }) => {
     );
 
     const onDelete = useCallback(() => {
-        console.log(111, console.log(event));
         startDeleteTransition(async () => {
             if (!event?.id) {
                 throw console.error();
