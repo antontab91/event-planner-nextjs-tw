@@ -1,8 +1,13 @@
 import React from 'react';
+import { auth } from '@clerk/nextjs/server';
 
 import { IconLink } from '@/components';
 
-const Events: React.FC = () => {
+const EventPage: React.FC = async () => {
+    const { userId, redirectToSignIn } = await auth();
+
+    if (!userId) redirectToSignIn();
+
     return (
         <section className="flex flex-col items-center">
             <div className="flex gap-4 align-middle">
@@ -25,4 +30,4 @@ const Events: React.FC = () => {
     );
 };
 
-export default Events;
+export default EventPage;

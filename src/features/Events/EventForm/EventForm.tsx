@@ -18,7 +18,7 @@ import { createEvent, deleteEvent, updateEvent } from '../actions';
 
 const DEFAULT_VALUES: FormValues = {
     isActive: true,
-    durationsInMinutes: 30,
+    durationsInMinutes: 0,
     description: '',
     name: '',
 };
@@ -99,7 +99,15 @@ const EventForm: React.FC<Props> = ({ event }) => {
                     name="durationsInMinutes"
                     label="Duration"
                     description="In minutes"
-                    renderChild={(field) => <Input type="number" {...field} />}
+                    renderChild={(field) => (
+                        <Input
+                            type="number"
+                            {...field}
+                            onChange={(e) =>
+                                field.onChange(e.target.valueAsNumber || 0)
+                            }
+                        />
+                    )}
                 />
                 <FormFieldItem
                     control={form.control}
