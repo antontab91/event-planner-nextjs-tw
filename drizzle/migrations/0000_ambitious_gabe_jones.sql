@@ -3,7 +3,7 @@ CREATE TABLE "events" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"clerkUserId" text NOT NULL,
 	"name" text NOT NULL,
-	"durationsInMinutes" integer NOT NULL,
+	"durationInMinutes" integer NOT NULL,
 	"isActive" boolean DEFAULT true NOT NULL,
 	"description" text,
 	"createdAt" timestamp DEFAULT now() NOT NULL,

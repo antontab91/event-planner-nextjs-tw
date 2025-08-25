@@ -1,4 +1,4 @@
-import EventForm from './EventForm';
+import EventForm from './components/EventForm';
 import * as eventSchema from './schema';
 
 export { eventSchema };

@@ -31,7 +31,7 @@ export const EventTable = pgTable(
         // notNull - обязательное поле
         clerkUserId: text('clerkUserId').notNull(),
         name: text('name').notNull(),
-        durationsInMinutes: integer('durationsInMinutes').notNull(),
+        durationInMinutes: integer('durationInMinutes').notNull(),
         isActive: boolean('isActive').notNull().default(true),
         description: text('description'),
         createdAt: CREATED_AT,
@@ -56,7 +56,7 @@ export const ScheduleAvailabilityTable = pgTable(
     'scheduleAvailabilities',
     {
         id: uuid('id').primaryKey().defaultRandom(),
-        scheduleId: uuid('id')
+        scheduleId: uuid('scheduleId')
             .notNull()
             .references(() => ScheduleTable.id, { onDelete: 'cascade' }), // при удалении расписания автоматически удаляются все связанные интервалы
         startTime: text('startTime').notNull(),

@@ -4,21 +4,21 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import React, { useTransition, useCallback } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { eventFormSchema } from '../schema';
+import { eventFormSchema } from '../../schema';
 import { Form } from '@/vendor/form';
 import { Textarea } from '@/vendor/textarea';
 import { Input } from '@/vendor/input';
 import { Switch } from '@/vendor/switch';
-import { FormValues } from '../types';
-import { Event } from '../../../../drizzle/schema';
+import { FormValues } from '../../types';
+import { Event } from '../../../../../drizzle/schema';
 import { FormFieldItem, PopupConfirm, FormActions } from '@/components';
-import { createEvent, deleteEvent, updateEvent } from '../actions';
+import { createEvent, deleteEvent, updateEvent } from '../../actions';
 
 // z.infer - Zodутилита берёт схему (z.object, z.string и т. д.) и автоматически выводит из неё TypeScript-тип.
 
 const DEFAULT_VALUES: FormValues = {
     isActive: true,
-    durationsInMinutes: 0,
+    durationInMinutes: 0,
     description: '',
     name: '',
 };
@@ -96,7 +96,7 @@ const EventForm: React.FC<Props> = ({ event }) => {
                 />
                 <FormFieldItem
                     control={form.control}
-                    name="durationsInMinutes"
+                    name="durationInMinutes"
                     label="Duration"
                     description="In minutes"
                     renderChild={(field) => (
@@ -163,6 +163,6 @@ export default React.memo(EventForm);
 const mapEventToFormValues = (event: Event): FormValues => ({
     name: event.name,
     isActive: event.isActive,
-    durationsInMinutes: event.durationsInMinutes,
+    durationInMinutes: event.durationInMinutes,
     description: event.description ?? '',
 });
