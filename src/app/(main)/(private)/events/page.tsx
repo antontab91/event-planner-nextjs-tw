@@ -1,12 +1,17 @@
 import React from 'react';
 import { auth } from '@clerk/nextjs/server';
+import { getEvents } from '@/features/Events/actions';
 
 import { IconLink } from '@/components';
 
 const EventPage: React.FC = async () => {
     const { userId, redirectToSignIn } = await auth();
 
-    if (!userId) redirectToSignIn();
+    if (!userId) {
+        return redirectToSignIn();
+    }
+
+    const events = await getEvents({ userId });
 
     return (
         <section className="flex flex-col items-center">
