@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import React from 'react';
 
-import { ICONS_MAP } from '@/app-constants';
+import { ICONS_MAP } from '@/shared/constants';
 import { Button } from '../../vendor/button';
 
 interface Props extends React.ComponentProps<typeof Button> {

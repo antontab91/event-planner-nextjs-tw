@@ -10,7 +10,7 @@ import {
     uuid,
 } from 'drizzle-orm/pg-core';
 
-import { DAYS_OF_WEEK_IN_ORDER } from '@/app-constants';
+import { DAYS_OF_WEEK_IN_ORDER } from '@/shared/constants';
 
 const CREATED_AT = timestamp('createdAt').notNull().defaultNow();
 const UPDATED_AT = timestamp('updatedAt')

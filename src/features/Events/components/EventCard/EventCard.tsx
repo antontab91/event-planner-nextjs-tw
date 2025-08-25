@@ -7,9 +7,10 @@ import {
     CardTitle,
 } from '@/vendor/card';
 import { Button } from '@/vendor/button';
-import { cn } from '@/vendor/utils';
+import { cn } from '@/shared/utils';
 import React from 'react';
 import Link from 'next/link';
+import { formatEventDescription } from '@/shared/utils';
 
 type Props = {
     id: string;
@@ -39,11 +40,10 @@ const EventCard: React.FC<Props> = ({
                 <CardTitle>{name}</CardTitle>
                 <CardDescription>
                     111111
-                    {/* {formatEventDescription(durationInMinutes)} */}
+                    {formatEventDescription(durationInMinutes)}
                 </CardDescription>
             </CardHeader>
 
-            {/* Show event description if available */}
             {description != null && (
                 <CardContent className={cn(!isActive && 'opacity-50')}>
                     {description}

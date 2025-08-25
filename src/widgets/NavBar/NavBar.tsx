@@ -4,9 +4,9 @@ import { SignedIn, UserButton } from '@clerk/nextjs';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-import { AUTH_BUTTONS, PRIVATE_NAV_LINKS } from '@/app-constants';
+import { AUTH_BUTTONS, PRIVATE_NAV_LINKS } from '@/shared/constants';
 import { IconButton, IconLink } from '@/components';
-import { cn } from '@/vendor/utils';
+import { cn } from '@/shared/utils';
 
 interface Props {
     isPrivate?: boolean;

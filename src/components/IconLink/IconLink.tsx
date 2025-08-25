@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-import { ICONS_MAP } from '@/app-constants';
+import { ICONS_MAP } from '@/shared/constants';
 
 interface Props {
     href: string;
