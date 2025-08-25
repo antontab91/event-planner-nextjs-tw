@@ -1,9 +1,5 @@
 import { Card, CardHeader, CardTitle, CardContent } from '@/vendor/card';
-import events from '@/features/Events';
-
-const {
-    components: { EventForm },
-} = events;
+import EventForm from '@/features/EventForm';
 
 const NewEventPage: React.FC = () => {
     return (

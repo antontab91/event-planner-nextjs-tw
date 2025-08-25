@@ -39,18 +39,18 @@ const EventCard: React.FC<Props> = ({
             <CardHeader className={cn(!isActive && 'opacity-50')}>
                 <CardTitle>{name}</CardTitle>
                 <CardDescription>
-                    111111
                     {formatEventDescription(durationInMinutes)}
                 </CardDescription>
             </CardHeader>
 
-            {description != null && (
+            {description && (
                 <CardContent className={cn(!isActive && 'opacity-50')}>
                     {description}
                 </CardContent>
             )}
 
             <CardFooter className="flex justify-end gap-2 mt-auto">
+                {/* это фича */}
                 {/* {isActive && (
                     <CopyEventButton
                         variant="outline"
@@ -58,6 +58,8 @@ const EventCard: React.FC<Props> = ({
                         clerkUserId={clerkUserId}
                     />
                 )} */}
+
+                {/* заменить на свою кнопку  */}
 
                 <Button
                     className="cursor-pointer hover:scale-105 bg-blue-400 hover:bg-blue-600"

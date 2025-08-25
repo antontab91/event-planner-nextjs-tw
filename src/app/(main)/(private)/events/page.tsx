@@ -1,7 +1,8 @@
 import React from 'react';
 import { auth } from '@clerk/nextjs/server';
-import { getEvents } from '@/features/Events/actions';
+import { getEvents } from '@/features/EventForm/actions';
 import { CalendarRange } from 'lucide-react';
+import EventCard from '@/widgets/EventCard';
 
 import { IconLink } from '@/components';
 
@@ -35,11 +36,9 @@ const EventPage: React.FC = async () => {
 
             {events.length ? (
                 <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 p-10">
-                    {events.map(
-                        (event) =>
-                            // <EventCard key={event.id} {...event} />
-                            1112
-                    )}
+                    {events.map((event) => (
+                        <EventCard key={event.id} {...event} />
+                    ))}
                 </div>
             ) : (
                 <div className="flex flex-col items-center gap-4">
