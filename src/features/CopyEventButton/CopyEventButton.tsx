@@ -6,7 +6,7 @@ import { Button, buttonVariants } from '@/vendor/button';
 import { cn } from '@/shared/utils';
 import { CopyIcon } from 'lucide-react';
 import { useState } from 'react';
-import { toast } from 'sonner';
+// import { toast } from 'sonner';
 
 type CopyState = 'idle' | 'copied' | 'error';
 
@@ -46,9 +46,10 @@ const CopyEventButton: React.FC<Props> = ({
             .writeText(url)
             .then(() => {
                 setCopyState('copied');
-                toast('Link copied successfully.', {
-                    duration: 3000,
-                });
+
+                // toast('Link copied successfully.', {
+                //     duration: 3000,
+                // });
                 setTimeout(() => setCopyState('idle'), 2000);
             })
             .catch(() => {

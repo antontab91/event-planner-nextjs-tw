@@ -10,6 +10,7 @@ import { Button } from '@/vendor/button';
 import { cn } from '@/shared/utils';
 import React from 'react';
 import Link from 'next/link';
+import CopyEventButton from '@/features/CopyEventButton';
 import { formatEventDescription } from '@/shared/utils';
 
 type Props = {
@@ -50,16 +51,15 @@ const EventCard: React.FC<Props> = ({
             )}
 
             <CardFooter className="flex justify-end gap-2 mt-auto">
-                {/* это фича */}
-                {/* {isActive && (
+                {isActive && (
                     <CopyEventButton
                         variant="outline"
                         eventId={id}
                         clerkUserId={clerkUserId}
                     />
-                )} */}
+                )}
 
-                {/* заменить на свою кнопку  */}
+                {/* TODO: заменить на свою кнопку  */}
 
                 <Button
                     className="cursor-pointer hover:scale-105 bg-blue-400 hover:bg-blue-600"
