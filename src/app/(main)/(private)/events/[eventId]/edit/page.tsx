@@ -1,5 +1,5 @@
 import EventForm from '@/features/EventForm';
-import { Card, CardContent, CardHeader, CardTitle } from '@/vendor/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card';
 import { getEvent } from '@/features/EventForm/actions';
 import { auth } from '@clerk/nextjs/server';
 

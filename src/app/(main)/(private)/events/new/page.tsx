@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardTitle, CardContent } from '@/vendor/card';
+import { Card, CardHeader, CardTitle, CardContent } from '@/shared/ui/card';
 import EventForm from '@/features/EventForm';
 
 const NewEventPage: React.FC = () => {

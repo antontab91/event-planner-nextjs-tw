@@ -8,7 +8,7 @@ import {
     FormLabel,
     FormMessage,
     FormDescription,
-} from '@/vendor/form';
+} from '@/shared/ui/form';
 import type {
     Control,
     FieldValues,

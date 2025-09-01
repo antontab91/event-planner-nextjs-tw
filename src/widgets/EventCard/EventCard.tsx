@@ -5,8 +5,8 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-} from '@/vendor/card';
-import { Button } from '@/vendor/button';
+} from '@/shared/ui/card';
+import { Button } from '@/shared/ui/button';
 import { cn } from '@/shared/utils';
 import React from 'react';
 import Link from 'next/link';
