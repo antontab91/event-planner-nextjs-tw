@@ -11,8 +11,8 @@ import {
     AlertDialogCancel,
     AlertDialogFooter,
     AlertDialogAction,
-} from '@/shared/ui/alert-dialog';
-import { Button } from '@/shared/ui/button';
+} from '../../shadcn/alert-dialog';
+import { Button } from '@/shared/ui/shadcn/button';
 
 type Classes = {
     trigger?: string;

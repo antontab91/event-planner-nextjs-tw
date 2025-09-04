@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import { ICONS_MAP } from '@/shared/constants';
-import { Button } from '../../shared/ui/button';
+import { Button } from '../../shadcn/button';
 
 interface Props extends React.ComponentProps<typeof Button> {
     src?: string;

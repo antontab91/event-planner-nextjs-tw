@@ -2,7 +2,7 @@
 
 import { VariantProps } from 'class-variance-authority';
 
-import { Button, buttonVariants } from '@/shared/ui/button';
+import { Button, buttonVariants } from '@/shared';
 import { cn } from '@/shared/utils';
 import { CopyIcon } from 'lucide-react';
 import { useState } from 'react';

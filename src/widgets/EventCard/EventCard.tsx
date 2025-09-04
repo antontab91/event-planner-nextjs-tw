@@ -5,13 +5,12 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-} from '@/shared/ui/card';
-import { Button } from '@/shared/ui/button';
-import { cn } from '@/shared/utils';
+    Button,
+} from '@/shared';
 import React from 'react';
 import Link from 'next/link';
 import CopyEventButton from '@/features/CopyEventButton';
-import { formatEventDescription } from '@/shared/utils';
+import { formatEventDescription, cn } from '@/shared/utils';
 
 type Props = {
     id: string;

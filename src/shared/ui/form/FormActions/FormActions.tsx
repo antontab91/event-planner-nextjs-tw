@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { Button } from '../../shared/ui/button';
+import { Button } from '../../shadcn/button';
 
 interface Props {
     renderChild?: React.ReactNode;

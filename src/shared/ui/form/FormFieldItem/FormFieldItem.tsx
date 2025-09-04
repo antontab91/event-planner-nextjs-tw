@@ -8,7 +8,7 @@ import {
     FormLabel,
     FormMessage,
     FormDescription,
-} from '@/shared/ui/form';
+} from '../../shadcn/form';
 import type {
     Control,
     FieldValues,

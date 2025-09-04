@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import React from 'react';
 
 import { AUTH_BUTTONS, PRIVATE_NAV_LINKS } from '@/shared/constants';
-import { IconButton, IconLink } from '@/components';
+import { IconButton, IconLink } from '@/shared';
 import { cn } from '@/shared/utils';
 
 interface Props {
